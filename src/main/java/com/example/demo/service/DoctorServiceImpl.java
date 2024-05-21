@@ -41,12 +41,12 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
-    public DoctorResponse delete(Long id) {
+    public void delete(Long id) {
         Optional<Doctor> doctorOptional=doctorRepository.findById(id);
         if(doctorOptional.isPresent()){
             Doctor doctor = doctorOptional.get();
             doctorRepository.delete(doctor);
-            return DoctorDtoConvertion.convertDoctor(doctor);
+
 
         }
         throw new CommonException("Doctor not found with given id"+id, HttpStatus.NOT_FOUND);
