@@ -14,5 +14,5 @@ public interface DoctorService {
 
     DoctorResponse findById(Long id);
 
-    DoctorResponse delete(Long id);
+    void delete(Long id);
 }
