@@ -24,15 +24,15 @@ public class GlobalExceptionHandler {
     }
 
     // Diğer genel istisnalar için işleyici
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<CommonErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
-        CommonErrorResponse errorResponse = new CommonErrorResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "An unexpected error occurred",
-                LocalDateTime.now()
-        );
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<CommonErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
+//        CommonErrorResponse errorResponse = new CommonErrorResponse(
+//                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+//                "An unexpected error occurred",
+//                LocalDateTime.now()
+//        );
+//        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
 
 }
