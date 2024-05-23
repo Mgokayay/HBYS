@@ -8,11 +8,15 @@ import java.util.List;
 public interface DoctorService {
 
 
-    DoctorResponse save(Doctor doctor);
+    DoctorResponse save(Doctor doctor,Long departmentId);
 
     List<DoctorResponse> findAll();
 
     DoctorResponse findById(Long id);
 
     void delete(Long id);
+
+    Doctor findByDoctorId(Long doctorId);
+
+
 }
