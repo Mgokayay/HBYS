@@ -51,4 +51,14 @@ public class DepartmentServiceImpl implements DepartmentService{
         }
         throw new CommonException("Department not found with given id"+id, HttpStatus.NOT_FOUND);
     }
+
+    @Override
+    public Department findByDepartmentId(Long departmentId) {
+        Optional<Department> departmentOptional=departmentRepository.findById(departmentId);
+        if(departmentOptional.isPresent()){
+
+            return departmentOptional.get();
+        }
+        throw new CommonException("Department not found with given id"+departmentId, HttpStatus.NOT_FOUND);
+    }
 }
