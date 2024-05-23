@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Doctor {
     @JoinColumn(name = "department_id",nullable = false)
     private Department department;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL)
     private List<PatientVisit> patientVisits=new ArrayList<>();
 
