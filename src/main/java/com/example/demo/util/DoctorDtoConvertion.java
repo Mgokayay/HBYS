@@ -13,13 +13,15 @@ public class DoctorDtoConvertion {
         List<DoctorResponse> doctorResponses=new ArrayList<>();
 
         doctors.stream().forEach(doctor -> doctorResponses.add(new DoctorResponse(doctor.getId(),
-                doctor.getName(),doctor.getDepartment().getId())));
+                doctor.getName(),doctor.getDepartment().getId()
+                ,PatientVisitDtoConvertion.convertPatientVisitList(doctor.getPatientVisits()))));
 
         return doctorResponses;
     }
 
     public static DoctorResponse convertDoctor(Doctor doctor){
         return new DoctorResponse(doctor.getId(),
-                doctor.getName(),doctor.getDepartment().getId());
+                doctor.getName(),doctor.getDepartment().getId()
+                ,PatientVisitDtoConvertion.convertPatientVisitList(doctor.getPatientVisits()));
     }
 }
