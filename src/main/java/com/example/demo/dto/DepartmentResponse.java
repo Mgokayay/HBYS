@@ -1,4 +1,6 @@
 package com.example.demo.dto;
 
-public record DepartmentResponse(Long id, String name) {
+import java.util.List;
+
+public record DepartmentResponse(Long id, String name, List<DoctorResponse> doctors,List<PatientVisitResponse> patientVisits) {
 }
