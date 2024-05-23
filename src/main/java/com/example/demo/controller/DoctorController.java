@@ -1,25 +1,28 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.DoctorResponse;
+import com.example.demo.entity.Department;
 import com.example.demo.entity.Doctor;
 import com.example.demo.service.DoctorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "doctor")
+@RequestMapping("/doctor")
 public class DoctorController {
 
     private final DoctorService doctorService;
 
+    @Autowired
     public DoctorController(DoctorService doctorService) {
         this.doctorService = doctorService;
     }
 
-    @PostMapping
-    public DoctorResponse save(@RequestBody Doctor doctor){
-        return doctorService.save(doctor);
+    @PostMapping("/{departmentId}")
+    public DoctorResponse save(@RequestBody Doctor doctor, @PathVariable Long departmentId){
+        return doctorService.save(doctor,departmentId);
     }
 
     @RequestMapping
