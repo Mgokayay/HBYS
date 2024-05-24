@@ -12,12 +12,18 @@ public class PatientVisitDtoConvertion {
     public static List<PatientVisitResponse> convertPatientVisitList(List<PatientVisit> patientVisits){
         List<PatientVisitResponse> patientVisitResponses=new ArrayList<>();
         patientVisits.stream().forEach(patientVisit -> patientVisitResponses.add(new PatientVisitResponse(patientVisit.getId(),
-                patientVisit.getVisitDate(),patientVisit.getNotes())));
+                patientVisit.getVisitDate(),patientVisit.getNotes(),
+                patientVisit.getDoctor().getName(),
+                patientVisit.getDepartment().getName(),
+                patientVisit.getPatient().getFullName())));
         return patientVisitResponses;
     }
 
     public static PatientVisitResponse convertPatientVisit(PatientVisit patientVisit){
-        return new PatientVisitResponse(patientVisit.getId(), patientVisit.getVisitDate(), patientVisit.getNotes());
+        return new PatientVisitResponse(patientVisit.getId(), patientVisit.getVisitDate(), patientVisit.getNotes()
+        ,patientVisit.getDoctor().getName(),
+                patientVisit.getDepartment().getName(),
+                patientVisit.getPatient().getFullName());
     }
 
 }
