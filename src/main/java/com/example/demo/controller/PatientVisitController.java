@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("patientvisit")
+@RequestMapping("/patientvisit")
 public class PatientVisitController {
 
     private final PatientVisitService patientVisitService;
@@ -19,9 +19,12 @@ public class PatientVisitController {
         this.patientVisitService = patientVisitService;
     }
 
-    @PostMapping
-    public PatientVisitResponse save(@RequestBody PatientVisit patientVisit){
-        return patientVisitService.save(patientVisit);
+    @PostMapping("/param")
+    public PatientVisitResponse save(@RequestBody PatientVisit patientVisit,
+                                     @RequestParam Long departmentId,
+                                     @RequestParam Long doctorId,
+                                     @RequestParam Long patientId){
+        return patientVisitService.save(patientVisit,departmentId,doctorId,patientId);
     }
 
     @GetMapping
