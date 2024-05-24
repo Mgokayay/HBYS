@@ -38,12 +38,22 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public void delete(Long id) {
+    public String delete(Long id) {
         Optional<Patient> patientOptional=patientRepository.findById(id);
         if(patientOptional.isPresent()){
             Patient patient=patientOptional.get();
             patientRepository.delete(patient);
+            return "Delete process successed";
         }
         throw new CommonException("Patient not found with given id"+id, HttpStatus.NOT_FOUND);
     }
-}
+
+    @Override
+    public Patient findByPatientId(Long patientId) {
+        Optional<Patient> patientOptional=patientRepository.findById(patientId);
+        if(patientOptional.isPresent()){
+            return patientOptional.get();
+        }
+        throw new CommonException("Patient not found with given id"+patientId
+                , HttpStatus.NOT_FOUND);
+}}
