@@ -14,5 +14,7 @@ public interface PatientService {
 
     PatientResponse findById(Long id);
 
-    void delete(Long id);
+    String delete(Long id);
+
+    Patient findByPatientId(Long patientId);
 }
