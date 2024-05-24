@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface PatientVisitService {
 
-    PatientVisitResponse save(PatientVisit patientVisit);
+    PatientVisitResponse save(PatientVisit patientVisit
+    ,Long departmentId,Long doctorId,Long patientId);
 
     List<PatientVisitResponse> findAll();
 
