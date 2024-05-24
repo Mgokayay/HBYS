@@ -1,9 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.PatientVisitResponse;
+import com.example.demo.entity.Department;
+import com.example.demo.entity.Doctor;
+import com.example.demo.entity.Patient;
 import com.example.demo.entity.PatientVisit;
 
 import com.example.demo.exceptions.CommonException;
+
 import com.example.demo.repository.PatientVisitRepository;
 import com.example.demo.util.PatientVisitDtoConvertion;
 import lombok.AllArgsConstructor;
@@ -18,9 +22,26 @@ import java.util.Optional;
 public class PatientVisitServiceImpl implements PatientVisitService{
 
     private final PatientVisitRepository patientVisitRepository;
+    private final PatientService patientService;
+    private final DepartmentService departmentService;
+    private final DoctorService doctorService;
 
     @Override
-    public PatientVisitResponse save(PatientVisit patientVisit) {
+    public PatientVisitResponse save(PatientVisit patientVisit,Long departmentId
+    ,Long doctorId,Long patientId) {
+        //patient service içerisinde oluşturup patientId buldurduğumuz metot
+        Patient patient=patientService.findByPatientId(patientId);
+        patientVisit.setPatient(patient);
+        patient.getPatientVisits().add(patientVisit);
+
+        Department department=departmentService.findByDepartmentId(departmentId);
+        patientVisit.setDepartment(department);
+        department.getPatientVisits().add(patientVisit);
+
+        Doctor doctor=doctorService.findByDoctorId(doctorId);
+        patientVisit.setDoctor(doctor);
+        doctor.getPatientVisits().add(patientVisit);
+
 
         return PatientVisitDtoConvertion.convertPatientVisit(patientVisitRepository.save(patientVisit));
     }
