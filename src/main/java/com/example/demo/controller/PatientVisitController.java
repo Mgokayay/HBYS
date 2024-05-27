@@ -19,12 +19,10 @@ public class PatientVisitController {
         this.patientVisitService = patientVisitService;
     }
 
-    @PostMapping("/param")
-    public PatientVisitResponse save(@RequestBody PatientVisit patientVisit,
-                                     @RequestParam Long departmentId,
-                                     @RequestParam Long doctorId,
-                                     @RequestParam Long patientId){
-        return patientVisitService.save(patientVisit,departmentId,doctorId,patientId);
+    @PostMapping
+    public PatientVisitResponse save(@RequestBody PatientVisit patientVisit
+                                     ){
+        return patientVisitService.save(patientVisit);
     }
 
     @GetMapping
