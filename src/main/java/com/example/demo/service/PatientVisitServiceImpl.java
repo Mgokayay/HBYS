@@ -27,18 +27,17 @@ public class PatientVisitServiceImpl implements PatientVisitService{
     private final DoctorService doctorService;
 
     @Override
-    public PatientVisitResponse save(PatientVisit patientVisit,Long departmentId
-    ,Long doctorId,Long patientId) {
+    public PatientVisitResponse save(PatientVisit patientVisit) {
         //patient service içerisinde oluşturup patientId buldurduğumuz metot
-        Patient patient=patientService.findByPatientId(patientId);
+        Patient patient=patientService.findByPatientId(patientVisit.getPatient().getId());
         patientVisit.setPatient(patient);
         patient.getPatientVisits().add(patientVisit);
 
-        Department department=departmentService.findByDepartmentId(departmentId);
+        Department department=departmentService.findByDepartmentId(patientVisit.getDepartment().getId());
         patientVisit.setDepartment(department);
         department.getPatientVisits().add(patientVisit);
 
-        Doctor doctor=doctorService.findByDoctorId(doctorId);
+        Doctor doctor=doctorService.findByDoctorId(patientVisit.getDoctor().getId());
         patientVisit.setDoctor(doctor);
         doctor.getPatientVisits().add(patientVisit);
 
