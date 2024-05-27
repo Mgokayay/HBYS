@@ -20,9 +20,9 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @PostMapping("/{departmentId}")
-    public DoctorResponse save(@RequestBody Doctor doctor, @PathVariable Long departmentId){
-        return doctorService.save(doctor,departmentId);
+    @PostMapping
+    public DoctorResponse save(@RequestBody Doctor doctor){
+        return doctorService.save(doctor);
     }
 
     @RequestMapping
