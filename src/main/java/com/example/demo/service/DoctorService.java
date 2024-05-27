@@ -8,7 +8,7 @@ import java.util.List;
 public interface DoctorService {
 
 
-    DoctorResponse save(Doctor doctor,Long departmentId);
+    DoctorResponse save(Doctor doctor);
 
     List<DoctorResponse> findAll();
 
