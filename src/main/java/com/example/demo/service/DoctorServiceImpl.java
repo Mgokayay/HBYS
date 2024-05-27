@@ -26,8 +26,8 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
-    public DoctorResponse save(Doctor doctor,Long departmentId) {
-        Department department=departmentService.findByDepartmentId(departmentId);
+    public DoctorResponse save(Doctor doctor) {
+        Department department=departmentService.findByDepartmentId(doctor.getDepartment().getId());
         doctor.setDepartment(department);
         department.getDoctors().add(doctor);
 
